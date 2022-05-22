@@ -1,5 +1,7 @@
 
 
+using SmsSystem.API.Registers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<DataContext>(options => options
-    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Singleton);
+builder.Services.RegisterRepository();
 
 var app = builder.Build();
 

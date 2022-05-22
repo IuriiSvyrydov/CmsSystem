@@ -4,6 +4,7 @@ using CmsSystem.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CmsSystem.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220521073356_update baseEntity")]
+    partial class updatebaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,11 @@ namespace CmsSystem.Persistence.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CustomerId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -68,7 +74,7 @@ namespace CmsSystem.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId1");
 
                     b.ToTable("Orders");
                 });
@@ -119,7 +125,7 @@ namespace CmsSystem.Persistence.Migrations
                 {
                     b.HasOne("CmsSystem.Domain.Entities.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("CustomerId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

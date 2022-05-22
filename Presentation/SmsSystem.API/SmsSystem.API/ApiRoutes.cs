@@ -6,5 +6,6 @@ public static class ApiRoutes
     public static class Products
     {
         public const string IdRoute = "{id}";
+        public const string GetProductById = "product/{id}";
     }
 }

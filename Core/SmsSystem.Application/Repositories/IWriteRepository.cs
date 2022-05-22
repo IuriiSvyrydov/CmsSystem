@@ -1,11 +1,15 @@
-﻿namespace SmsSystem.Application.Repositories
+﻿using CmsSystem.Domain.Entities.Common;
+
+namespace SmsSystem.Application.Repositories
 {
-    public interface IWriteRepository<T> : IRepository<T> where T : class
+    public interface IWriteRepository<T> : IRepository<T> where T : BaseEntity
     {
         Task<bool> AddAsync(T model);
-        Task<bool> AddAsync(List<T> model);
-        Task<bool> RemoveAsync(T model);
+        Task<bool> AddRangeAsync(List<T> model);
+        bool RemoveAsync(T model);
         Task<bool> RemoveAsync(string id);
-        Task<bool> UpdateAsync(T model);
+        bool RemoveRangeAsync(List<T>model);
+        bool UpdateAsync(T model);
+        Task<int> SaveChangesAsync();
     }
 }

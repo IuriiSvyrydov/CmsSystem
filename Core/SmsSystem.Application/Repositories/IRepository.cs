@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CmsSystem.Domain.Entities.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace SmsSystem.Application.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : BaseEntity
     {
-        DbSet<T> Table { get; set; }
+        DbSet<T> Table { get;  }
     }
 }

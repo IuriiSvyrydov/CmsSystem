@@ -21,8 +21,4 @@
     <ProjectReference Include="..\..\..\Core\SmsSystem.Application\SmsSystem.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Registers\" />
-  </ItemGroup>
-
 </Project>
