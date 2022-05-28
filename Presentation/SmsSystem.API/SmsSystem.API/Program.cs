@@ -14,6 +14,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<DataContext>(options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Singleton);
 builder.Services.RegisterRepository();
+builder.Services.AddCors(opt=>opt.AddDefaultPolicy(policy=>
+    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200")
+    ));
 
 var app = builder.Build();
 
@@ -24,6 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

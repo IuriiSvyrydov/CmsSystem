@@ -9,3 +9,6 @@ global using CmsSystem.Persistence.Repository.Product;
 global using SmsSystem.Application.Repositories.Customer;
 global using SmsSystem.Application.Repositories.Order;
 global using SmsSystem.Application.Repositories.Product;
+global using System.Net;
+ global using CmsSystem.Domain.Entities;
+ global using SmsSystem.Application.ViewModels.Products;
